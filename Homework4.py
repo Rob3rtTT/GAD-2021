@@ -1,36 +1,28 @@
-class Fractie(object):
-    def __init__(self, numarator, numitor):
-        self.numarator = numarator
-        self.numitor = numitor
 
-    def get_numarator(self):
-        return self.numarator
-
-    def get_numitor(self):
-        return self.numitor
-
-    def set_numitor(self, numitor_nou):
-        self.numitor = numitor_nou
-
-    def set_numarator(self, numarator_nou):
-        self.numarator = numarator_nou
-
-
-
+#Write a Fraction(num, denominator) class that implements the following methods:
+class Fraction(object):
+    #__init__ : instance numerator and denominator
+    def __init__(self,num,den):
+        self.num=num
+        self.den=den
+    
+    #__str__ : display "numerator/counter"
     def __str__(self):
-        return f"{str(self.numarator)}/{str(self.numitor)}"
+        return f'{self.num}/{self.den}'
 
-    def __add__(self, fractie):
-        fractie = Fractie(4,6)
-        fractie.numitor = self.numitor*fractie.numarator+fractie.numitor*self.numarator
-        fractie.numarator = self.numarator*fractie.numarator
-        return fractie
+    #return a new fraction representing the addition
+    def __add__(self,otherfraction):
+        new_num = self.num * otherfraction.den + self.den * otherfraction.num
+        new_den = self.den * otherfraction.den
+        return f'{new_num}/{new_den}'
 
-    def __sub__(self, fractie):
-        fractie = Fractie(4,6)
-        fractie.numitor = self.numitor*fractie.numarator-fractie.numitor*self.numarator
-        fractie.numarator = self.numarator*fractie.numarator
-        return fractie
+    #return a new fraction representing the subtraction
+    def __sub__(self,otherfraction):
+        new_num = self.num * otherfraction.den - self.den * otherfraction.num
+        new_den = self.den * otherfraction.den
+        return f'{new_num}/{new_den}'
 
+    #return a new fraction (the inverse of the fraction)
     def inverse(self):
-        return Fractie(self.numitor, self.numarator)
+        return Fraction(self.den,self.num)
+
